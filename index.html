@@ -13,11 +13,12 @@
     <!-- Sekcja 1 -->
     <fieldset class="compact">
       <legend>Dane ogólne</legend>
-      <div class="grid-2">
-        <label>Turniej<br><input name="TURNIEJ"></label>
-        <label>Data<br><input name="DATA"></label>
-        <label>Etap<br><input name="ETAP"></label>
-        <label>Link do artykułu turniejowego<br><input name="LINK: TURNIEJ" placeholder="https://..."></label>
+      <div class="grid-compact">
+        <label>Turniej<br><input name="TURNIEJ" placeholder="Turniej"></label>
+        <label>Data<br><input name="DATA" placeholder="DD.MM.YYYY"></label>
+        <label>Godzina<br><input name="GODZINA" placeholder="np. 20:00"></label>
+        <label>Etap<br><input name="ETAP" placeholder="np. Finał"></label>
+        <label>Link do turnieju<br><input name="LINK: TURNIEJ" placeholder="https://..."></label>
       </div>
     </fieldset>
 
@@ -41,6 +42,8 @@
         </thead>
         <tbody>
           <tr><td>Gracze</td><td><input name="GRACZ A"></td><td><input name="GRACZ B"></td></tr>
+          <tr><td>Kraj</td><td><input name="GRACZ A: KRAJ"></td><td><input name="GRACZ B: KRAJ"></td></tr>
+          <tr><td>Kurs</td><td><input name="GRACZ A: KURS"></td><td><input name="GRACZ B: KURS"></td></tr>
           <tr><td>Wynik</td><td><input name="PARTIE: GRACZ A"></td><td><input name="PARTIE: GRACZ B"></td></tr>
           <tr><td>Średnie</td><td><input name="ŚREDNIA: GRACZ A"></td><td><input name="ŚREDNIA: GRACZ B"></td></tr>
           <tr><td>Podwójne</td><td><input name="PODWÓJNE: GRACZ A"></td><td><input name="PODWÓJNE: GRACZ B"></td></tr>
