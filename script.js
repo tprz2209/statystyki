@@ -5,8 +5,15 @@ const template = `
 <p><span style="font-size: 24px;">[GRACZ A] <strong>[WYNIK]</strong> [GRACZ B]</span></p>
 <p>Data: [DATA]</p>
 <p>Etap: [ETAP]</p>
-<p style="text-align: center;"> </p>
+<p> </p>
+
+<p style="text-align: center;">
+[superbet_exact country1="[GRACZ A: KRAJ]" team1="[GRACZ A]" date="[DATA: ISO]" country2="[GRACZ B: KRAJ]" team2="[GRACZ B]" time="[GODZINA]" kurs1="[GRACZ A: KURS]" kursx="1.30" kurs2="[GRACZ B: KURS]" link="https://sprbt.pl/LNDART35"]
+</p>
+
+<p> </p>
 <h3 style="text-align: center;">Statystyki meczowe</h3>
+
 <figure class="wp-block-table">
 <table class="has-fixed-layout">
 <thead>
@@ -23,10 +30,21 @@ const template = `
 </tbody>
 </table>
 </figure>
+
 <p><a href="[LINK: TURNIEJ]" target="_blank" rel="noopener"><span style="font-size: 16px;">Wyniki całego turnieju</span></a></p>
 <p> </p>
 <center>[BLOCKQUOTE]</center>
 `;
+
+function convertDateToISO(dateStr) {
+  // format DD.MM.YYYY → YYYY-MM-DD
+  const parts = dateStr.split(".");
+  if (parts.length === 3) {
+    const [d, m, y] = parts;
+    return `${y}-${m.padStart(2, "0")}-${d.padStart(2, "0")}`;
+  }
+  return dateStr;
+}
 
 function generateCode() {
   let html = template;
@@ -42,11 +60,10 @@ function generateCode() {
   // automatyczny wynik
   const a = values["PARTIE: GRACZ A"];
   const b = values["PARTIE: GRACZ B"];
-  if (a && b && !isNaN(a) && !isNaN(b)) {
-    values["WYNIK"] = `${a}:${b}`;
-  } else {
-    values["WYNIK"] = "[WYNIK]";
-  }
+  values["WYNIK"] = (a && b && !isNaN(a) && !isNaN(b)) ? `${a}:${b}` : "[WYNIK]";
+
+  // dodatkowe pole DATA: ISO
+  values["DATA: ISO"] = convertDateToISO(values["DATA"]);
 
   // zamiana w szablonie
   Object.keys(values).forEach(key => {
