@@ -1,77 +1,67 @@
 <!doctype html>
 <html lang="pl">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Szablon turnieju — podmiana wartości</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generator kodu meczu</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<main class="container">
-<h1>Generator tabeli turniejowej</h1>
+  <main class="container">
+    <h1>Generator kodu meczu</h1>
 
+    <!-- Sekcja 1 -->
+    <fieldset class="compact">
+      <legend>Dane ogólne</legend>
+      <div class="grid-2">
+        <label>Turniej<br><input name="TURNIEJ"></label>
+        <label>Data<br><input name="DATA"></label>
+        <label>Etap<br><input name="ETAP"></label>
+        <label>Link do artykułu turniejowego<br><input name="LINK: TURNIEJ" placeholder="https://..."></label>
+      </div>
+    </fieldset>
 
-<form id="template-form" class="form-grid">
-<fieldset>
-<legend>Informacje ogólne</legend>
-<label>Turniej<br><input name="Turniej" placeholder="np. Premier League"></label>
-<label>Faza<br><input name="Faza" placeholder="np. Ćwierćfinał"></label>
-</fieldset>
+    <!-- Sekcja 2 -->
+    <fieldset class="compact">
+      <legend>Opis i Blockquote</legend>
+      <label>Opis meczu<br>
+        <textarea name="OPIS" rows="3" placeholder="Krótki opis meczu..."></textarea>
+      </label>
+      <label>Blockquote / Tweet<br>
+        <input name="BLOCKQUOTE" placeholder="<blockquote>...</blockquote>">
+      </label>
+    </fieldset>
 
+    <!-- Sekcja 3 -->
+    <fieldset class="compact">
+      <legend>Statystyki</legend>
+      <table class="form-table">
+        <thead>
+          <tr><th></th><th>Gracz A</th><th>Gracz B</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Gracze</td><td><input name="GRACZ A"></td><td><input name="GRACZ B"></td></tr>
+          <tr><td>Wynik</td><td><input name="PARTIE: GRACZ A"></td><td><input name="PARTIE: GRACZ B"></td></tr>
+          <tr><td>Średnie</td><td><input name="ŚREDNIA: GRACZ A"></td><td><input name="ŚREDNIA: GRACZ B"></td></tr>
+          <tr><td>Podwójne</td><td><input name="PODWÓJNE: GRACZ A"></td><td><input name="PODWÓJNE: GRACZ B"></td></tr>
+          <tr><td>Maksy</td><td><input name="MAKSY: GRACZ A"></td><td><input name="MAKSY: GRACZ B"></td></tr>
+          <tr><td>140+</td><td><input name="140+: GRACZ A"></td><td><input name="140+: GRACZ B"></td></tr>
+          <tr><td>100+</td><td><input name="100+: GRACZ A"></td><td><input name="100+: GRACZ B"></td></tr>
+          <tr><td>Najw. CO</td><td><input name="MAX CO: GRACZ A"></td><td><input name="MAX CO: GRACZ B"></td></tr>
+        </tbody>
+      </table>
+    </fieldset>
 
-<fieldset>
-<legend>Dane graczy</legend>
-<table class="form-table">
-<thead>
-<tr><th></th><th>Gracz 1</th><th>Gracz 2</th></tr>
-</thead>
-<tbody>
-<tr><td>Imię</td><td><input name="Gracz 1"></td><td><input name="Gracz 2"></td></tr>
-<tr><td>Wynik</td><td><input name="Wynik 1"></td><td><input name="Wynik 2"></td></tr>
-<tr><td>Średnia</td><td><input name="Średnia 1"></td><td><input name="Średnia 2"></td></tr>
-<tr><td>Podwójne</td><td><input name="Podwójne 1"></td><td><input name="Podwójne 2"></td></tr>
-<tr><td>Maksy</td><td><input name="Maksy 1"></td><td><input name="Maksy 2"></td></tr>
-<tr><td>140+</td><td><input name="140+ 1"></td><td><input name="140+ 2"></td></tr>
-<tr><td>100+</td><td><input name="100+ 1"></td><td><input name="100+ 2"></td></tr>
-<tr><td>Checkout</td><td><input name="CO 1"></td><td><input name="CO 2"></td></tr>
-</tbody>
-</table>
-</fieldset>
+    <div class="buttons">
+      <button type="button" id="generate">Generuj kod</button>
+    </div>
 
+    <section class="generated-code">
+      <h2>Wygenerowany kod</h2>
+      <textarea id="output" readonly></textarea>
+    </section>
+  </main>
 
-<div class="buttons">
-<button type="button" id="update">Aktualizuj podgląd i kod</button>
-</div>
-</form>
-
-
-<section class="preview" id="preview">
-<p style="text-align: center;"><strong><span style="font-size: 24px;"><span data-key="Turniej">[Turniej]</span></span></strong></p>
-<p style="text-align: center;"><span style="font-size: 16px;"><span data-key="Faza">[Faza]</span></span></p>
-<figure class="wp-block-table">
-<table class="has-fixed-layout">
-<thead>
-<tr><th></th><th><span data-key="Gracz 1">[Gracz 1]</span></th><th><span data-key="Gracz 2">[Gracz 2]</span></th></tr>
-</thead>
-<tbody>
-<tr><td><strong>WYNIK</strong></td><td><span data-key="Wynik 1">[Wynik 1]</span></td><td><span data-key="Wynik 2">[Wynik 2]</span></td></tr>
-<tr><td><strong>Średnie</strong></td><td><span data-key="Średnia 1">[Średnia 1]</span></td><td><span data-key="Średnia 2">[Średnia 2]</span></td></tr>
-<tr><td><strong>Podwójne</strong></td><td><span data-key="Podwójne 1">[Podwójne 1]</span></td><td><span data-key="Podwójne 2">[Podwójne 2]</span></td></tr>
-<tr><td><strong>Maksy</strong></td><td><span data-key="Maksy 1">[Maksy 1]</span></td><td><span data-key="Maksy 2">[Maksy 2]</span></td></tr>
-<tr><td><strong>140+</strong></td><td><span data-key="140+ 1">[140+ 1]</span></td><td><span data-key="140+ 2">[140+ 2]</span></td></tr>
-<tr><td><strong>100+</strong></td><td><span data-key="100+ 1">[100+ 1]</span></td><td><span data-key="100+ 2">[100+ 2]</span></td></tr>
-<tr><td><strong>Najw. checkout</strong></td><td><span data-key="CO 1">[CO 1]</span></td><td><span data-key="CO 2">[CO 2]</span></td></tr>
-</tbody>
-</table>
-</figure>
-</section>
-
-
-<section class="generated-code">
-<h2>Wygenerowany kod HTML</h2>
-<textarea id="output" readonly></textarea>
-</section>
-</main>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
