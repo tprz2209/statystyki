@@ -3,7 +3,7 @@ const template = `
 <p> </p>
 <h2><span style="text-decoration: underline;">[TURNIEJ]</span></h2>
 <p><span style="font-size: 24px;">[GRACZ A] <strong>[WYNIK]</strong> [GRACZ B]</span></p>
-<p>Data: [DATA]</p>
+<p>Data: [DATA], [GODZINA]</p>
 <p>Etap: [ETAP]</p>
 <p> </p>
 
