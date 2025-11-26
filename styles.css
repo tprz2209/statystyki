@@ -123,3 +123,32 @@ button:hover { background: #0a8dff; }
   color: #eee;
 }
 
+#copy {
+  margin-top: 8px;
+  padding: 8px 16px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+#copy:hover {
+  background: #2ecc71;
+}
+
+#clear {
+  padding: 8px 16px;
+  background: #ff4b4b;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  margin-left: 8px;
+}
+
+#clear:hover {
+  background: #ff6b6b;
+}
