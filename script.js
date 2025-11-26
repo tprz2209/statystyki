@@ -74,3 +74,48 @@ function generateCode() {
 }
 
 document.getElementById("generate").addEventListener("click", generateCode);
+
+document.getElementById("copy").addEventListener("click", () => {
+  const output = document.getElementById("output").value;
+
+  navigator.clipboard.writeText(output).then(() => {
+    const btn = document.getElementById("copy");
+  });
+});
+
+document.getElementById("clear").addEventListener("click", () => {
+  const fieldsToClear = [
+    "GODZINA",
+    "ETAP",
+    "OPIS",
+    "BLOCKQUOTE",
+    "GRACZ A",
+    "GRACZ B",
+    "GRACZ A: KRAJ",
+    "GRACZ B: KRAJ",
+    "GRACZ A: KURS",
+    "GRACZ B: KURS",
+    "PARTIE: GRACZ A",
+    "PARTIE: GRACZ B",
+    "ŚREDNIA: GRACZ A",
+    "ŚREDNIA: GRACZ B",
+    "100+: GRACZ A",
+    "100+: GRACZ B",
+    "140+: GRACZ A",
+    "140+: GRACZ B",
+    "MAKSY: GRACZ A",
+    "MAKSY: GRACZ B",
+    "MAX CO: GRACZ A",
+    "MAX CO: GRACZ B",
+    "PODWÓJNE: GRACZ A",
+    "PODWÓJNE: GRACZ B"
+  ];
+
+  fieldsToClear.forEach(name => {
+    const field = document.querySelector(`[name="${name}"]`);
+    if (field) field.value = "";
+  });
+
+  // Czyścimy wygenerowany kod
+  document.getElementById("output").value = "";
+});
