@@ -1,7 +1,5 @@
 const template = `
-<p>[OPIS]</p>
-<p> </p>
-<h2><span style="text-decoration: underline;">[TURNIEJ]</span></h2>
+<p style="font-weight: bold; font-size: 24px; text-decoration: underline;">[TURNIEJ]</p>
 <p><span style="font-size: 24px;">[GRACZ A] <strong>[WYNIK]</strong> [GRACZ B]</span></p>
 <p>Data: [DATA], [GODZINA]</p>
 <p>Etap: [ETAP]</p>
@@ -33,11 +31,9 @@ const template = `
 
 <p><a href="[LINK: TURNIEJ]" target="_blank" rel="noopener"><span style="font-size: 16px;">Wyniki całego turnieju</span></a></p>
 <p> </p>
-<center>[BLOCKQUOTE]</center>
 `;
 
 function convertDateToISO(dateStr) {
-  // format DD.MM.YYYY → YYYY-MM-DD
   const parts = dateStr.split(".");
   if (parts.length === 3) {
     const [d, m, y] = parts;
@@ -51,21 +47,17 @@ function generateCode() {
   const inputs = document.querySelectorAll("input[name], textarea[name]");
   const values = {};
 
-  // zbieranie wartości
   inputs.forEach(input => {
     const key = input.name;
     values[key] = input.value.trim() || `[${key}]`;
   });
 
-  // automatyczny wynik
   const a = values["PARTIE: GRACZ A"];
   const b = values["PARTIE: GRACZ B"];
   values["WYNIK"] = (a && b && !isNaN(a) && !isNaN(b)) ? `${a}:${b}` : "[WYNIK]";
 
-  // dodatkowe pole DATA: ISO
   values["DATA: ISO"] = convertDateToISO(values["DATA"]);
 
-  // zamiana w szablonie
   Object.keys(values).forEach(key => {
     html = html.replaceAll(`[${key}]`, values[key]);
   });
@@ -77,18 +69,14 @@ document.getElementById("generate").addEventListener("click", generateCode);
 
 document.getElementById("copy").addEventListener("click", () => {
   const output = document.getElementById("output").value;
-
-  navigator.clipboard.writeText(output).then(() => {
-    const btn = document.getElementById("copy");
-  });
+  navigator.clipboard.writeText(output);
 });
 
 document.getElementById("clear").addEventListener("click", () => {
   const fieldsToClear = [
     "GODZINA",
-    "ETAP",
-    "OPIS",
-    "BLOCKQUOTE",
+    "OPIS",          // już nie istnieje, ale nie szkodzi
+    "BLOCKQUOTE",    // już nie istnieje
     "GRACZ A",
     "GRACZ B",
     "GRACZ A: KRAJ",
@@ -116,6 +104,5 @@ document.getElementById("clear").addEventListener("click", () => {
     if (field) field.value = "";
   });
 
-  // Czyścimy wygenerowany kod
   document.getElementById("output").value = "";
 });
