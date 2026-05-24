@@ -6,7 +6,7 @@ const template = `
 <p> </p>
 
 <p style="text-align: center;">
-[superbet_exact country1="[GRACZ A: KRAJ]" team1="[GRACZ A]" date="[DATA: ISO]" country2="[GRACZ B: KRAJ]" team2="[GRACZ B]" time="[GODZINA]" kurs1="[GRACZ A: KURS]" kursx="1.30" kurs2="[GRACZ B: KURS]" link="https://sprbt.pl/LNDART35"]
+[superbet_exact country1="[GRACZ A: KRAJ]" team1="[GRACZ A]" date="[DATA: ISO]" country2="[GRACZ B: KRAJ]" team2="[GRACZ B]" time="[GODZINA]" kurs1="[GRACZ A: KURS]" kursx="1.30" kurs2="[GRACZ B: KURS]" link="https://sprbt.pl/LNDART55"]
 </p>
 
 <p> </p>
